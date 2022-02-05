@@ -1,4 +1,4 @@
-FROM centos/centos:stream8 as builder
+FROM quay.io/centos/centos:stream8 as builder
 RUN dnf config-manager --set-enabled powertools
 
 # Install Basic Requirements, link is for a GCC8 bug
@@ -149,7 +149,7 @@ RUN dnf -y install /root/rpmbuild/RPMS/x86_64/wine-7* /root/rpmbuild/RPMS/noarch
                    /root/rpmbuild/RPMS/x86_64/wine-openal-7* /root/rpmbuild/RPMS/x86_64/wine-pulseaudio-7* \
                    /root/rpmbuild/RPMS/x86_64/wine-twain-7* /root/rpmbuild/RPMS/x86_64/wine-alsa-7*
 
-FROM centos/centos:stream8
+FROM quay.io/centos/centos:stream8
 COPY --from=builder /root/rpmbuild/RPMS/x86_64/* /RPMS/
 COPY --from=builder /root/rpmbuild/RPMS/i686/* /RPMS/
 COPY --from=builder /root/rpmbuild/RPMS/noarch/* /RPMS/
