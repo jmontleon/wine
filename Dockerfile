@@ -80,6 +80,7 @@ RUN dnf builddep -y /root/rpmbuild/SPECS/wine.spec
 RUN rpmbuild -ba /root/rpmbuild/SPECS/wine.spec && rm -rf /root/rpmbuild/BUILD/wine-7.1
 RUN sed -i 's/-devel/-devel(x86-32)/g' /root/rpmbuild/SPECS/wine.spec
 RUN sed -i 's/fontpackages-devel(x86-32)/fontpackages-devel/g' /root/rpmbuild/SPECS/wine.spec
+RUN sed -i 's/libusb-devel/libusbx-devel/g' /root/rpmbuild/SPECS/wine.spec
 RUN dnf builddep -y /root/rpmbuild/SPECS/wine.spec
 RUN rpmbuild -ba --target=i686 /root/rpmbuild/SPECS/wine.spec
 
