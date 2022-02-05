@@ -1,0 +1,27 @@
+name: Image Update
+
+on:
+  workflow_dispatch:
+ #  schedule:
+    #- cron: "15 23 * * *"
+  push:
+    branches:
+    - main
+env:
+  IMAGE_NAME: quay.io/jmontleon/wine
+  VERSION: latest
+jobs:
+  push:
+    environment: QUAY_ROBOT
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME:$VERSION
+
+      - name: Log into registry
+        run: echo "${{ secrets.QUAY_TOKEN }}" | docker login quay.io -u ${{ secrets.QUAY_ROBOT }} --password-stdin
+
+      - name: Push image
+        run: docker push $IMAGE_NAME:$VERSION
