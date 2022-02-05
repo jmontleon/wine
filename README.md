@@ -28,4 +28,4 @@ sudo dnf install -y ./wine-7*x86_64* \
                         ./wine-systemd-7*
 ```
 
-One app you could use to test is Notepad++
+32-bit apps to test include Steam and Notepad++
