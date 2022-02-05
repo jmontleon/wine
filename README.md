@@ -1,7 +1,7 @@
 # Explanation
 There is no i686 buildroot for EL8 in Copr or EPEL, so it is difficult to build wine.i686 to support 32-bit applications.
 
-This Dockerfile does some editing of RPM specs to facilitate building a recent wine CentOS 8 for both x86_64 and i686.
+This Dockerfile does some editing of RPM specs to facilitate building a recent wine on CentOS 8 for both x86_64 and i686.
 
 # Usage
 `sudo dnf config-manager --set-enabled powertools`   
